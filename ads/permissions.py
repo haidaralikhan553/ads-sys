@@ -13,6 +13,9 @@ class CanAccessAds(BasePermission):
         if view.action in ['update', 'partial_update', 'destroy']:
             if isinstance(request.user, CustomUser):
                 return request.user.user_role == 'admin'
+            
+        if view.action in ['retrieve']:
+            return True
         
         return False
     
